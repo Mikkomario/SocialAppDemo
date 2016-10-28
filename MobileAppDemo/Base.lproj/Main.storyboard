@@ -23,11 +23,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RSD-JI-f3t">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RSD-JI-f3t" customClass="FancyView" customModule="MobileAppDemo" customModuleProvider="target">
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ua8-dI-4kn">
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="testLogo" translatesAutoresizingMaskIntoConstraints="NO" id="iIG-ak-1Pi">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="testLogo2" translatesAutoresizingMaskIntoConstraints="NO" id="iIG-ak-1Pi">
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="96" id="azm-tN-UnX"/>
                                                 </constraints>
@@ -40,11 +40,11 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.039215686270000001" green="0.1137254902" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.16862745100000001" green="0.2784313725" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="2pY-oY-beP"/>
                                     <constraint firstAttribute="bottom" secondItem="Ua8-dI-4kn" secondAttribute="bottom" constant="8" id="8pZ-91-nK1"/>
-                                    <constraint firstItem="Ua8-dI-4kn" firstAttribute="centerX" secondItem="RSD-JI-f3t" secondAttribute="centerX" id="jMo-NQ-KS3"/>
+                                    <constraint firstItem="Ua8-dI-4kn" firstAttribute="leading" secondItem="RSD-JI-f3t" secondAttribute="leading" constant="32" id="jN6-u3-FSK"/>
                                     <constraint firstItem="Ua8-dI-4kn" firstAttribute="top" secondItem="RSD-JI-f3t" secondAttribute="top" constant="8" id="sLa-48-0ff"/>
                                 </constraints>
                             </view>
@@ -52,9 +52,9 @@
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="Cdv-Nb-I4o">
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" text="Select a sign in method" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Un-Yo-kit">
+                                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.55000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" text="Select a sign in method" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Un-Yo-kit">
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="32" id="7MA-PD-tkv"/>
+                                                    <constraint firstAttribute="height" constant="24" id="7MA-PD-tkv"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -62,14 +62,14 @@
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="wmC-VX-cOq">
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="f" translatesAutoresizingMaskIntoConstraints="NO" id="w3u-Qm-D8J">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="f" translatesAutoresizingMaskIntoConstraints="NO" id="w3u-Qm-D8J" customClass="ShadowedImageView" customModule="MobileAppDemo" customModuleProvider="target">
                                                         <color key="backgroundColor" red="0.27843137254901962" green="0.36470588235294116" blue="0.63921568627450975" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="48" id="C42-MJ-jIZ"/>
                                                             <constraint firstAttribute="height" constant="48" id="ob4-ow-VoF"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kgP-sP-P4m">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kgP-sP-P4m" customClass="RoundedButton" customModule="MobileAppDemo" customModuleProvider="target">
                                                         <color key="backgroundColor" red="0.16862745100000001" green="0.2784313725" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
                                                         <state key="normal" title="Login with Facebook">
@@ -78,7 +78,7 @@
                                                     </button>
                                                 </subviews>
                                             </stackView>
-                                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.85000002384185791" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" text="OR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EBC-hi-hA4">
+                                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.55000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" text="OR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EBC-hi-hA4">
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="32" id="lnB-bf-fei"/>
                                                 </constraints>
@@ -103,7 +103,7 @@
                                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="something@example.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QeV-ZI-5gh">
                                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.86575969827586208" colorSpace="calibratedRGB"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                        <textInputTraits key="textInputTraits"/>
+                                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                                                     </textField>
                                                                 </subviews>
                                                             </stackView>
@@ -120,7 +120,7 @@
                                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="something@example.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nbd-hJ-gfA">
                                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.86575969829999999" colorSpace="calibratedRGB"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                        <textInputTraits key="textInputTraits"/>
+                                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                                                                     </textField>
                                                                 </subviews>
                                                             </stackView>
@@ -128,7 +128,7 @@
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="8yp-7m-bGO">
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Mc-XW-XEB">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Mc-XW-XEB" customClass="RoundedButton" customModule="MobileAppDemo" customModuleProvider="target">
                                                                 <color key="backgroundColor" red="0.94509803921568625" green="0.35686274509803922" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="36" id="Fvd-QA-1Zv"/>
@@ -172,7 +172,6 @@
                                         </variation>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="Cdv-Nb-I4o" firstAttribute="centerY" secondItem="GRf-Mw-bNd" secondAttribute="centerY" id="8Nd-3g-VSu"/>
                                     <constraint firstItem="Cdv-Nb-I4o" firstAttribute="leading" secondItem="GRf-Mw-bNd" secondAttribute="leading" constant="32" id="P4o-4Q-c8g"/>
@@ -201,6 +200,6 @@
     </scenes>
     <resources>
         <image name="f" width="352" height="328"/>
-        <image name="testLogo" width="194" height="159"/>
+        <image name="testLogo2" width="194" height="159"/>
     </resources>
 </document>
