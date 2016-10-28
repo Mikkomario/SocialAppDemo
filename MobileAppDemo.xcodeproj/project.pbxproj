@@ -14,6 +14,7 @@
 		7CD8EAF31DC2273700364B70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7CD8EAF21DC2273700364B70 /* Assets.xcassets */; };
 		7CD8EAF61DC2273700364B70 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CD8EAF41DC2273700364B70 /* LaunchScreen.storyboard */; };
 		7CD8EAFE1DC2277300364B70 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7CD8EAFD1DC2277300364B70 /* GoogleService-Info.plist */; };
+		7CD8EB031DC334AF00364B70 /* Lobster-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7CD8EB021DC334AF00364B70 /* Lobster-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		7CD8EAF51DC2273700364B70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7CD8EAF71DC2273700364B70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7CD8EAFD1DC2277300364B70 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7CD8EB021DC334AF00364B70 /* Lobster-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lobster-Regular.ttf"; sourceTree = "<group>"; };
 		D2E64ACD4275C9F593F894C9 /* Pods-MobileAppDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileAppDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-MobileAppDemo/Pods-MobileAppDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -78,6 +80,7 @@
 				7CD8EAEF1DC2273700364B70 /* Main.storyboard */,
 				7CD8EAF21DC2273700364B70 /* Assets.xcassets */,
 				7CD8EAF41DC2273700364B70 /* LaunchScreen.storyboard */,
+				7CD8EB021DC334AF00364B70 /* Lobster-Regular.ttf */,
 				7CD8EAFD1DC2277300364B70 /* GoogleService-Info.plist */,
 				7CD8EAF71DC2273700364B70 /* Info.plist */,
 			);
@@ -177,6 +180,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CD8EB031DC334AF00364B70 /* Lobster-Regular.ttf in Resources */,
 				7CD8EAF61DC2273700364B70 /* LaunchScreen.storyboard in Resources */,
 				7CD8EAFE1DC2277300364B70 /* GoogleService-Info.plist in Resources */,
 				7CD8EAF31DC2273700364B70 /* Assets.xcassets in Resources */,
