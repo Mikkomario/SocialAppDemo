@@ -14,6 +14,8 @@ import FirebaseAuth
 
 class SignInVC: UIViewController
 {
+	@IBOutlet weak var emailField: UITextField!
+	@IBOutlet weak var passwordField: UITextField!
 
 	override func viewDidLoad()
 	{
@@ -25,6 +27,46 @@ class SignInVC: UIViewController
 	{
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.
+	}
+	
+	@IBAction func signInButtonPressed(_ sender: UIButton)
+	{
+		if let email = emailField.text, let password = passwordField.text
+		{
+			FIRAuth.auth()?.signIn(withEmail: email, password: password)
+			{
+				(user, error) in
+				
+				if let error = error
+				{
+					// TODO: Handle other errors here as well
+					switch FIRAuthErrorCode(rawValue: error._code)!
+					{
+					case .errorCodeUserNotFound:
+						print("AUTH: USER NOT FOUND -> CREATING NEW USER")
+						FIRAuth.auth()?.createUser(withEmail: email, password: password)
+						{
+							(user, error) in
+							
+							if let error = error
+							{
+								print("AUTH: FAILED TO CREATE USER \(error)")
+							}
+							else
+							{
+								print("AUTH: SUCCESSFULLY CREATED NEW USER")
+							}
+						}
+					default: print("AUTH: ERROR IN EMAIL LOGIN \(error)")
+					}
+				}
+				else
+				{
+					print("AUTH: EMAIL AUTH SUCCESSFUL")
+				}
+			}
+		}
+		// TODO: Inform user that the field contents are missing
 	}
 
 	@IBAction func facebookButtonPressed(_ sender: UIButton)
