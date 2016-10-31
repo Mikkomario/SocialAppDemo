@@ -9,3 +9,4 @@
 import UIKit
 
 let SHADOW_GRAY = UIColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0.5)
+let KEY_UID = "UID"

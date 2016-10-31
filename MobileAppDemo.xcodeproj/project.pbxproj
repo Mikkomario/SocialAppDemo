@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7C4291091DC7318D00FE5EB5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C4291081DC7318D00FE5EB5 /* GoogleService-Info.plist */; };
+		7C42910B1DC7454600FE5EB5 /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C42910A1DC7454600FE5EB5 /* FeedVC.swift */; };
 		7CD8EAEC1DC2273700364B70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD8EAEB1DC2273700364B70 /* AppDelegate.swift */; };
 		7CD8EAEE1DC2273700364B70 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD8EAED1DC2273700364B70 /* SignInVC.swift */; };
 		7CD8EAF11DC2273700364B70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CD8EAEF1DC2273700364B70 /* Main.storyboard */; };
@@ -27,6 +28,7 @@
 		50C289A9ED46CDF4460C2D1B /* Pods-MobileAppDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileAppDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-MobileAppDemo/Pods-MobileAppDemo.release.xcconfig"; sourceTree = "<group>"; };
 		7C4291071DC72EDA00FE5EB5 /* MobileAppDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MobileAppDemo.entitlements; sourceTree = "<group>"; };
 		7C4291081DC7318D00FE5EB5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7C42910A1DC7454600FE5EB5 /* FeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
 		7CD8EAE81DC2273700364B70 /* MobileAppDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileAppDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CD8EAEB1DC2273700364B70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7CD8EAED1DC2273700364B70 /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				7CD8EAED1DC2273700364B70 /* SignInVC.swift */,
+				7C42910A1DC7454600FE5EB5 /* FeedVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 				7CD8EAEE1DC2273700364B70 /* SignInVC.swift in Sources */,
 				7CD8EB0A1DC346A600364B70 /* RoundedButton.swift in Sources */,
 				7CD8EAEC1DC2273700364B70 /* AppDelegate.swift in Sources */,
+				7C42910B1DC7454600FE5EB5 /* FeedVC.swift in Sources */,
 				7CD8EB051DC3411800364B70 /* FancyView.swift in Sources */,
 				7CD8EB081DC3416A00364B70 /* Constants.swift in Sources */,
 				7CD8EB0E1DC34B7B00364B70 /* ShadowedImageView.swift in Sources */,

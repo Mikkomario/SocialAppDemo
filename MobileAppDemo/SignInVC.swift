@@ -11,6 +11,7 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 import Firebase
 import FirebaseAuth
+import SwiftKeychainWrapper
 
 class SignInVC: UIViewController
 {
@@ -20,7 +21,19 @@ class SignInVC: UIViewController
 	override func viewDidLoad()
 	{
 		super.viewDidLoad()
-		// Do any additional setup after loading the view, typically from a nib.
+	}
+	
+	override func viewDidAppear(_ animated: Bool)
+	{
+		if let _ = KeychainWrapper.standard.string(forKey: KEY_UID)
+		{
+			print("AUTH: USING EXISTING KEYCHAIN")
+			performSegue(withIdentifier: "ToFeed", sender: nil)
+		}
+		else
+		{
+			print("AUTH: NO EXSTING KEYCHAIN")
+		}
 	}
 
 	override func didReceiveMemoryWarning()
@@ -55,6 +68,7 @@ class SignInVC: UIViewController
 							else
 							{
 								print("AUTH: SUCCESSFULLY CREATED NEW USER")
+								self.completeLogin(user: user)
 							}
 						}
 					default: print("AUTH: ERROR IN EMAIL LOGIN \(error)")
@@ -63,6 +77,7 @@ class SignInVC: UIViewController
 				else
 				{
 					print("AUTH: EMAIL AUTH SUCCESSFUL")
+					self.completeLogin(user: user)
 				}
 			}
 		}
@@ -111,18 +126,25 @@ class SignInVC: UIViewController
 			else
 			{
 				print("AUTH: SUCCESSFULLY AUTHENTICATED WITH FIREBASE")
+				self.completeLogin(user: user)
 			}
 		}
-		
-		/*
-		FIRAuth.signIn(with: credential, completion:
+	}
+	
+	private func completeLogin(user: FIRUser?)
+	{
+		if let user = user
 		{
-			(user, error) in
-			
-			
-			
-		})
-*/
+			if KeychainWrapper.standard.set(user.uid, forKey: KEY_UID)
+			{
+				print("AUTH: UID SAVED TO KEYCHAIN")
+			}
+			else
+			{
+				print("AUTH: FAILED TO SAVE UID TO KEYCHAIN")
+			}
+		}
+		performSegue(withIdentifier: "ToFeed", sender: nil)
 	}
 }
 
