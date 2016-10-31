@@ -13,6 +13,7 @@ class InputTextView: UITextView
 	override func awakeFromNib()
 	{
 		super.awakeFromNib()
+		layer.borderWidth = 1
 		layer.borderColor = SHADOW_GRAY.cgColor
 		layer.cornerRadius = 2.0
 	}

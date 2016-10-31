@@ -8,12 +8,12 @@
 
 import UIKit
 
-class CircleView: UIView, Shadowed
+class CircleButton: UIButton
 {
-	override func awakeFromNib()
+	override func layoutSubviews()
 	{
-		super.awakeFromNib()
-		setDefaultShadow()
+		super.layoutSubviews()
 		layer.cornerRadius = self.frame.width / 2
+		clipsToBounds = true
 	}
 }
