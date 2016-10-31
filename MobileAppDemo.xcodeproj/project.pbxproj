@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C4291091DC7318D00FE5EB5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C4291081DC7318D00FE5EB5 /* GoogleService-Info.plist */; };
 		7CD8EAEC1DC2273700364B70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD8EAEB1DC2273700364B70 /* AppDelegate.swift */; };
 		7CD8EAEE1DC2273700364B70 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD8EAED1DC2273700364B70 /* SignInVC.swift */; };
 		7CD8EAF11DC2273700364B70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CD8EAEF1DC2273700364B70 /* Main.storyboard */; };
 		7CD8EAF31DC2273700364B70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7CD8EAF21DC2273700364B70 /* Assets.xcassets */; };
 		7CD8EAF61DC2273700364B70 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CD8EAF41DC2273700364B70 /* LaunchScreen.storyboard */; };
-		7CD8EAFE1DC2277300364B70 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7CD8EAFD1DC2277300364B70 /* GoogleService-Info.plist */; };
 		7CD8EB031DC334AF00364B70 /* Lobster-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7CD8EB021DC334AF00364B70 /* Lobster-Regular.ttf */; };
 		7CD8EB051DC3411800364B70 /* FancyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD8EB041DC3411800364B70 /* FancyView.swift */; };
 		7CD8EB081DC3416A00364B70 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD8EB071DC3416A00364B70 /* Constants.swift */; };
@@ -25,6 +25,8 @@
 /* Begin PBXFileReference section */
 		24B7BF8F54A88453ECDDB33E /* Pods-MobileAppDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileAppDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MobileAppDemo/Pods-MobileAppDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		50C289A9ED46CDF4460C2D1B /* Pods-MobileAppDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileAppDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-MobileAppDemo/Pods-MobileAppDemo.release.xcconfig"; sourceTree = "<group>"; };
+		7C4291071DC72EDA00FE5EB5 /* MobileAppDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MobileAppDemo.entitlements; sourceTree = "<group>"; };
+		7C4291081DC7318D00FE5EB5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7CD8EAE81DC2273700364B70 /* MobileAppDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileAppDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CD8EAEB1DC2273700364B70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7CD8EAED1DC2273700364B70 /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
@@ -32,7 +34,6 @@
 		7CD8EAF21DC2273700364B70 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7CD8EAF51DC2273700364B70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7CD8EAF71DC2273700364B70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7CD8EAFD1DC2277300364B70 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7CD8EB021DC334AF00364B70 /* Lobster-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lobster-Regular.ttf"; sourceTree = "<group>"; };
 		7CD8EB041DC3411800364B70 /* FancyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FancyView.swift; sourceTree = "<group>"; };
 		7CD8EB071DC3416A00364B70 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -92,6 +93,7 @@
 		7CD8EAEA1DC2273700364B70 /* MobileAppDemo */ = {
 			isa = PBXGroup;
 			children = (
+				7C4291071DC72EDA00FE5EB5 /* MobileAppDemo.entitlements */,
 				7CD8EB061DC3415D00364B70 /* Util */,
 				7CD8EB011DC31DF100364B70 /* Controller */,
 				7CD8EB001DC31DEA00364B70 /* View */,
@@ -101,7 +103,7 @@
 				7CD8EAF21DC2273700364B70 /* Assets.xcassets */,
 				7CD8EAF41DC2273700364B70 /* LaunchScreen.storyboard */,
 				7CD8EB021DC334AF00364B70 /* Lobster-Regular.ttf */,
-				7CD8EAFD1DC2277300364B70 /* GoogleService-Info.plist */,
+				7C4291081DC7318D00FE5EB5 /* GoogleService-Info.plist */,
 				7CD8EAF71DC2273700364B70 /* Info.plist */,
 			);
 			path = MobileAppDemo;
@@ -176,7 +178,13 @@
 				TargetAttributes = {
 					7CD8EAE71DC2273700364B70 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 4QFE6EUS3B;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -205,7 +213,7 @@
 			files = (
 				7CD8EB031DC334AF00364B70 /* Lobster-Regular.ttf in Resources */,
 				7CD8EAF61DC2273700364B70 /* LaunchScreen.storyboard in Resources */,
-				7CD8EAFE1DC2277300364B70 /* GoogleService-Info.plist in Resources */,
+				7C4291091DC7318D00FE5EB5 /* GoogleService-Info.plist in Resources */,
 				7CD8EAF31DC2273700364B70 /* Assets.xcassets in Resources */,
 				7CD8EAF11DC2273700364B70 /* Main.storyboard in Resources */,
 			);
@@ -396,6 +404,8 @@
 			baseConfigurationReference = 24B7BF8F54A88453ECDDB33E /* Pods-MobileAppDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MobileAppDemo/MobileAppDemo.entitlements;
+				DEVELOPMENT_TEAM = 4QFE6EUS3B;
 				INFOPLIST_FILE = MobileAppDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = mikkomario.MobileAppDemo;
@@ -409,6 +419,8 @@
 			baseConfigurationReference = 50C289A9ED46CDF4460C2D1B /* Pods-MobileAppDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MobileAppDemo/MobileAppDemo.entitlements;
+				DEVELOPMENT_TEAM = 4QFE6EUS3B;
 				INFOPLIST_FILE = MobileAppDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = mikkomario.MobileAppDemo;
