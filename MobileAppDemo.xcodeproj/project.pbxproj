@@ -179,6 +179,7 @@
 					7CD8EAE71DC2273700364B70 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 4QFE6EUS3B;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {

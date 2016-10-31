@@ -97,7 +97,7 @@ class SignInVC: UIViewController
 		}
 	}
 	
-	private func firebaseAuth(_ credential: FIRAuthCredential)
+	fileprivate func firebaseAuth(_ credential: FIRAuthCredential)
 	{
 		FIRAuth.auth()?.signIn(with: credential)
 		{
