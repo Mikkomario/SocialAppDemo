@@ -29,6 +29,14 @@ class FeedVC: UIViewController, UITableViewDataSource
 			snapshot in
 			
 			print(snapshot.value)
+			
+			if let postShots = snapshot.children.allObjects as? [FIRDataSnapshot]
+			{
+				for postShot in postShots
+				{
+					print("PARSE: \(postShot)")
+				}
+			}
 		})
     }
 	

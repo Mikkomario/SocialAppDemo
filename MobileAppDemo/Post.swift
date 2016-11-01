@@ -16,7 +16,7 @@ struct Post: Storable
 	
 	var caption: String
 	var imageUrl: String
-	var likes = 0
+	var likes: Int
 	
 	var properties: [String : Any] { return ["caption" : caption, "imageUrl" : imageUrl, "likes" : likes] }
 	
