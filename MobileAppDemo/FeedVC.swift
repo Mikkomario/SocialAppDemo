@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseAuth
+import SwiftKeychainWrapper
 
 class FeedVC: UIViewController, UITableViewDataSource
 {
@@ -35,6 +37,10 @@ class FeedVC: UIViewController, UITableViewDataSource
 		return UITableViewCell()
 	}
 	
-	@IBAction func signOutButtonPressed(_ sender: AnyObject) {
+	@IBAction func signOutButtonPressed(_ sender: AnyObject)
+	{
+		try! FIRAuth.auth()?.signOut()
+		KeychainWrapper.standard.removeObject(forKey: KEY_UID)
+		dismiss(animated: true, completion: nil)
 	}
 }
