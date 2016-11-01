@@ -12,4 +12,5 @@ target 'MobileAppDemo' do
   pod 'Firebase/Storage'
   pod 'FBSDKLoginKit'
   pod 'SwiftKeychainWrapper', '~> 3.0'
+  pod 'SwiftyJSON', '~> 3.1'
 end
