@@ -14,6 +14,9 @@
 		7C4291111DC76AC100FE5EB5 /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4291101DC76AC100FE5EB5 /* InputTextView.swift */; };
 		7C4291131DC76E8500FE5EB5 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4291121DC76E8500FE5EB5 /* MessageCell.swift */; };
 		7C4291151DC7795900FE5EB5 /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4291141DC7795900FE5EB5 /* CircleImage.swift */; };
+		7C4291181DC86FCE00FE5EB5 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4291171DC86FCE00FE5EB5 /* DataService.swift */; };
+		7C42911C1DC878EE00FE5EB5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C42911B1DC878EE00FE5EB5 /* User.swift */; };
+		7C42911E1DC8798600FE5EB5 /* Storable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C42911D1DC8798600FE5EB5 /* Storable.swift */; };
 		7CD8EAEC1DC2273700364B70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD8EAEB1DC2273700364B70 /* AppDelegate.swift */; };
 		7CD8EAEE1DC2273700364B70 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD8EAED1DC2273700364B70 /* SignInVC.swift */; };
 		7CD8EAF11DC2273700364B70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CD8EAEF1DC2273700364B70 /* Main.storyboard */; };
@@ -39,6 +42,9 @@
 		7C4291101DC76AC100FE5EB5 /* InputTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
 		7C4291121DC76E8500FE5EB5 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		7C4291141DC7795900FE5EB5 /* CircleImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
+		7C4291171DC86FCE00FE5EB5 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		7C42911B1DC878EE00FE5EB5 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		7C42911D1DC8798600FE5EB5 /* Storable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storable.swift; sourceTree = "<group>"; };
 		7CD8EAE81DC2273700364B70 /* MobileAppDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileAppDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CD8EAEB1DC2273700364B70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7CD8EAED1DC2273700364B70 /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
@@ -84,6 +90,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		7C4291161DC86FAD00FE5EB5 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				7C4291171DC86FCE00FE5EB5 /* DataService.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
 		7CD8EADF1DC2273700364B70 = {
 			isa = PBXGroup;
 			children = (
@@ -105,7 +119,7 @@
 		7CD8EAEA1DC2273700364B70 /* MobileAppDemo */ = {
 			isa = PBXGroup;
 			children = (
-				7C4291071DC72EDA00FE5EB5 /* MobileAppDemo.entitlements */,
+				7C4291161DC86FAD00FE5EB5 /* Services */,
 				7CD8EB061DC3415D00364B70 /* Util */,
 				7CD8EB011DC31DF100364B70 /* Controller */,
 				7CD8EB001DC31DEA00364B70 /* View */,
@@ -117,6 +131,7 @@
 				7CD8EB021DC334AF00364B70 /* Lobster-Regular.ttf */,
 				7C4291081DC7318D00FE5EB5 /* GoogleService-Info.plist */,
 				7CD8EAF71DC2273700364B70 /* Info.plist */,
+				7C4291071DC72EDA00FE5EB5 /* MobileAppDemo.entitlements */,
 			);
 			path = MobileAppDemo;
 			sourceTree = "<group>";
@@ -124,6 +139,8 @@
 		7CD8EAFF1DC31DE300364B70 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7C42911B1DC878EE00FE5EB5 /* User.swift */,
+				7C42911D1DC8798600FE5EB5 /* Storable.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -294,9 +311,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C42910D1DC75BD800FE5EB5 /* CircleButton.swift in Sources */,
+				7C4291181DC86FCE00FE5EB5 /* DataService.swift in Sources */,
 				7CD8EB0C1DC34A0300364B70 /* Shadowed.swift in Sources */,
 				7CD8EAEE1DC2273700364B70 /* SignInVC.swift in Sources */,
 				7C4291151DC7795900FE5EB5 /* CircleImage.swift in Sources */,
+				7C42911C1DC878EE00FE5EB5 /* User.swift in Sources */,
 				7CD8EB0A1DC346A600364B70 /* RoundedButton.swift in Sources */,
 				7C42910F1DC75F1F00FE5EB5 /* MessageView.swift in Sources */,
 				7C4291131DC76E8500FE5EB5 /* MessageCell.swift in Sources */,
@@ -304,6 +323,7 @@
 				7CD8EAEC1DC2273700364B70 /* AppDelegate.swift in Sources */,
 				7C42910B1DC7454600FE5EB5 /* FeedVC.swift in Sources */,
 				7CD8EB051DC3411800364B70 /* FancyView.swift in Sources */,
+				7C42911E1DC8798600FE5EB5 /* Storable.swift in Sources */,
 				7CD8EB081DC3416A00364B70 /* Constants.swift in Sources */,
 				7CD8EB0E1DC34B7B00364B70 /* ShadowedImageView.swift in Sources */,
 			);
