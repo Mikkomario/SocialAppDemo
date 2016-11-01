@@ -8,6 +8,7 @@
 
 import Foundation
 import FirebaseDatabase
+import SwiftyJSON
 
 let REF_BASE = FIRDatabase.database().reference()
 
@@ -17,6 +18,9 @@ protocol Storable
 	var properties: [String : Any] {get}
 	// The parent entities for this item. Eg. ["posts"] or ["users", "someExampleCategory"]
 	static var parents: [String] {get}
+	
+	// TODO: Could add a throws keyword here
+	static func fromJSON(_ json: JSON, id: String) -> Self
 }
 
 extension Storable

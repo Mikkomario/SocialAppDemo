@@ -10,11 +10,14 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 import SwiftKeychainWrapper
+import SwiftyJSON
 
 class FeedVC: UIViewController, UITableViewDataSource
 {
 	@IBOutlet weak var feedTableView: UITableView!
 
+	var posts = [Post]()
+	
     override func viewDidLoad()
 	{
         super.viewDidLoad()
@@ -28,29 +31,41 @@ class FeedVC: UIViewController, UITableViewDataSource
 		{
 			snapshot in
 			
-			print(snapshot.value)
-			
-			if let postShots = snapshot.children.allObjects as? [FIRDataSnapshot]
+			self.posts = [] // Clears previous posts
+			if let postSnaps = snapshot.children.allObjects as? [FIRDataSnapshot]
 			{
-				for postShot in postShots
+				for postSnap in postSnaps
 				{
-					print("PARSE: \(postShot)")
+					print("PARSE: \(postSnap.value)")
+					let json = JSON(postSnap.value)
+					self.posts.append(Post.fromJSON(json, id: postSnap.key))
 				}
 			}
+			self.feedTableView.reloadData()
 		})
     }
 	
-	func numberOfSections(in tableView: UITableView) -> Int {
+	func numberOfSections(in tableView: UITableView) -> Int
+	{
 		return 1
 	}
 	
-	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 0
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+	{
+		return posts.count
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
 	{
-		return UITableViewCell()
+		if let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as? MessageCell
+		{
+			cell.configureCell(post: posts[indexPath.row])
+			return cell
+		}
+		else
+		{
+			fatalError()
+		}
 	}
 	
 	@IBAction func signOutButtonPressed(_ sender: AnyObject)

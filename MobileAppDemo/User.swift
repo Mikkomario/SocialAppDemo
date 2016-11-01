@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 struct User: Storable
 {
@@ -23,5 +24,10 @@ struct User: Storable
 	{
 		self._uid = uid
 		self.provider = provider
+	}
+	
+	static func fromJSON(_ json: JSON, id: String) -> User
+	{
+		return User(uid: id, provider: json["provider"].stringValue)
 	}
 }

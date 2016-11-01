@@ -18,5 +18,9 @@ class MessageCell: UITableViewCell
 	@IBOutlet weak var messageTextView: UITextView!
 	@IBOutlet weak var likeLabel: UILabel!
 	
-	
+	func configureCell(post: Post)
+	{
+		titleLabel.text = post.caption
+		likeLabel.text = "\(post.likes)"
+	}
 }

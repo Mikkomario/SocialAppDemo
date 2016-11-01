@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 struct Post: Storable
 {
@@ -26,5 +27,10 @@ struct Post: Storable
 		self.caption = caption
 		self.imageUrl = imageUrl
 		self.likes = likes
+	}
+	
+	static func fromJSON(_ json: JSON, id: String) -> Post
+	{
+		return Post(id: id, caption: json["caption"].stringValue, imageUrl: json["imageUrl"].stringValue, likes: json["likes"].intValue)
 	}
 }
