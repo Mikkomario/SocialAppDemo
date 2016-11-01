@@ -12,16 +12,21 @@ import FirebaseDatabase
 import SwiftKeychainWrapper
 import SwiftyJSON
 
-class FeedVC: UIViewController, UITableViewDataSource
+class FeedVC: UIViewController, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate
 {
+	@IBOutlet weak var addImageView: UIImageView!
 	@IBOutlet weak var feedTableView: UITableView!
 
 	var posts = [Post]()
+	private var imagePicker = UIImagePickerController()
 	
     override func viewDidLoad()
 	{
         super.viewDidLoad()
 
+		imagePicker.delegate = self
+		imagePicker.allowsEditing = true
+		
 		feedTableView.dataSource = self
 		
 		feedTableView.rowHeight = UITableViewAutomaticDimension
@@ -67,6 +72,24 @@ class FeedVC: UIViewController, UITableViewDataSource
 			fatalError()
 		}
 	}
+	
+	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
+	{
+		if let image = info[UIImagePickerControllerEditedImage] as? UIImage
+		{
+			addImageView.image = image
+		}
+		picker.dismiss(animated: true, completion: nil)
+	}
+	
+	@IBAction func selectImagePressed(_ sender: AnyObject)
+	{
+		present(imagePicker, animated: true, completion: nil)
+	}
+	
+	@IBAction func postButtonPressed(_ sender: AnyObject) {
+	}
+	
 	
 	@IBAction func signOutButtonPressed(_ sender: AnyObject)
 	{

@@ -47,12 +47,12 @@
 	</array>
 	<key>CFBundleURLTypes</key>
 	<array>
-  <dict>
-	  <key>CFBundleURLSchemes</key>
-	  <array>
-    <string>fb320193128336978</string>
-	  </array>
-  </dict>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb320193128336978</string>
+			</array>
+		</dict>
 	</array>
 	<key>FacebookAppID</key>
 	<string>320193128336978</string>
@@ -60,10 +60,12 @@
 	<string>Thubble Social App Demo</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-  <string>fbapi</string>
-  <string>fb-messenger-api</string>
-  <string>fbauth2</string>
-  <string>fbshareextension</string>
+		<string>fbapi</string>
+		<string>fb-messenger-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
 	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We need to use your gallery in order for you to choose a picture to post</string>
 </dict>
 </plist>

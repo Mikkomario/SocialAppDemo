@@ -20,7 +20,7 @@ class MessageCell: UITableViewCell
 	
 	func configureCell(post: Post)
 	{
-		titleLabel.text = post.caption
+		messageTextView.text = post.caption
 		likeLabel.text = "\(post.likes)"
 	}
 }

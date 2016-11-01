@@ -41,7 +41,7 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.16862745100000001" green="0.2784313725" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.1843137255" green="0.21176470589999999" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="2pY-oY-beP"/>
                                     <constraint firstAttribute="bottom" secondItem="Ua8-dI-4kn" secondAttribute="bottom" constant="8" id="8pZ-91-nK1"/>
@@ -71,7 +71,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kgP-sP-P4m" customClass="RoundedButton" customModule="MobileAppDemo" customModuleProvider="target">
-                                                        <color key="backgroundColor" red="0.16862745100000001" green="0.2784313725" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="backgroundColor" red="0.1843137255" green="0.21176470589999999" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
                                                         <state key="normal" title="Login with Facebook">
                                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -133,7 +133,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="8yp-7m-bGO">
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Mc-XW-XEB" customClass="RoundedButton" customModule="MobileAppDemo" customModuleProvider="target">
-                                                                <color key="backgroundColor" red="0.94509803921568625" green="0.35686274509803922" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="backgroundColor" red="0.98039215690000003" green="0.47450980390000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="36" id="Fvd-QA-1Zv"/>
                                                                 </constraints>
@@ -242,7 +242,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.16862745100000001" green="0.27450980390000002" blue="0.63921568630000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.18431372549019609" green="0.21176470588235294" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="9Nu-of-axq" firstAttribute="centerY" secondItem="dqz-3y-rPl" secondAttribute="centerY" id="ACH-e0-B0i"/>
                                     <constraint firstAttribute="bottom" secondItem="x1D-Ac-EmQ" secondAttribute="bottom" constant="8" id="Qod-HN-o02"/>
@@ -258,11 +258,15 @@
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="qcc-3d-Sun">
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add-image" translatesAutoresizingMaskIntoConstraints="NO" id="KKe-9q-ryg">
-                                                        <color key="backgroundColor" red="0.94509803920000002" green="0.35686274509999999" blue="0.035294117649999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add-image" translatesAutoresizingMaskIntoConstraints="NO" id="KKe-9q-ryg">
+                                                        <color key="backgroundColor" red="0.98039215690000003" green="0.47450980390000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <gestureRecognizers/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="64" id="tRp-xU-wNX"/>
                                                         </constraints>
+                                                        <connections>
+                                                            <outletCollection property="gestureRecognizers" destination="s69-aL-KsR" appends="YES" id="5Bq-ht-Vxf"/>
+                                                        </connections>
                                                     </imageView>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="c4D-sP-Klk" customClass="InputTextView" customModule="MobileAppDemo" customModuleProvider="target">
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -271,7 +275,7 @@
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qPN-uq-wEL" customClass="CircleButton" customModule="MobileAppDemo" customModuleProvider="target">
-                                                        <color key="backgroundColor" red="0.94509803920000002" green="0.35686274509999999" blue="0.035294117649999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="backgroundColor" red="0.98039215686274506" green="0.47450980392156861" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="64" id="LXK-15-Bhv"/>
                                                         </constraints>
@@ -279,6 +283,9 @@
                                                         <state key="normal" title="Post">
                                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="postButtonPressed:" destination="eGC-lp-B3K" eventType="touchUpInside" id="3ND-hM-dD1"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -314,7 +321,7 @@
                                                                                         <constraint firstAttribute="width" constant="64" id="piQ-bG-Lj7"/>
                                                                                     </constraints>
                                                                                 </imageView>
-                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Awesome Post" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o38-vk-psE">
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TestUser32" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o38-vk-psE">
                                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.87731681029999997" colorSpace="calibratedRGB"/>
                                                                                     <nil key="highlightedColor"/>
@@ -328,7 +335,7 @@
                                                                             </subviews>
                                                                         </stackView>
                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="kz0-ug-RYa"/>
-                                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ca1-Vx-geh">
+                                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ca1-Vx-geh">
                                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.87731681029999997" colorSpace="calibratedRGB"/>
@@ -397,7 +404,7 @@
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" red="0.45098039215686275" green="0.51764705882352946" blue="0.82745098039215681" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.396078431372549" green="0.43137254901960786" blue="0.76078431372549016" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Q8m-4v-h3n" firstAttribute="top" secondItem="JU6-Pk-gKP" secondAttribute="bottom" constant="16" id="0ws-xS-tu8"/>
                             <constraint firstItem="dqz-3y-rPl" firstAttribute="top" secondItem="Vcq-lp-th4" secondAttribute="top" id="N3V-It-1Fk"/>
@@ -409,10 +416,16 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addImageView" destination="KKe-9q-ryg" id="Rsp-hC-YCT"/>
                         <outlet property="feedTableView" destination="QSV-LU-0td" id="aWV-C5-hxo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3z2-0A-ohQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="s69-aL-KsR">
+                    <connections>
+                        <action selector="selectImagePressed:" destination="eGC-lp-B3K" id="4P4-ab-mYP"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="765.60000000000002" y="36.431784107946029"/>
         </scene>
