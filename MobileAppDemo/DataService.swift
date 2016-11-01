@@ -11,21 +11,21 @@ import FirebaseDatabase
 import Firebase
 
 
-
+@available(*, deprecated, message: "Use Storable interface instead")
 class DataService
 {
 	static let instance = DataService()
 	
 	let REF_BASE = FIRDatabase.database().reference()
 	
-	var REF_POSTS: FIRDatabaseReference {return REF_BASE.child("posts")}
-	var REF_USERS: FIRDatabaseReference {return REF_BASE.child("users")}
+	//var REF_POSTS: FIRDatabaseReference {return REF_BASE.child("posts")}
+	//var REF_USERS: FIRDatabaseReference {return REF_BASE.child("users")}
 	
 	// Hidden initializer
 	private init() {}
 	
-	func createFirebaseDBUser(user: User)
+	func updateItem(_ item: Storable)
 	{
-		REF_USERS.child(user.id).updateChildValues(user.properties)
+		item.reference.updateChildValues(item.properties)
 	}
 }

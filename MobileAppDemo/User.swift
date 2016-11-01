@@ -12,6 +12,8 @@ struct User: Storable
 {
 	private let _uid: String
 	
+	static let parents = ["users"]
+	
 	var provider: String
 	
 	var id: String {return _uid}

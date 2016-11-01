@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseDatabase
 import SwiftKeychainWrapper
 
 class FeedVC: UIViewController, UITableViewDataSource
@@ -22,6 +23,13 @@ class FeedVC: UIViewController, UITableViewDataSource
 		
 		feedTableView.rowHeight = UITableViewAutomaticDimension
 		feedTableView.estimatedRowHeight = 320
+		
+		Post.parentReference.observe(.value, with:
+		{
+			snapshot in
+			
+			print(snapshot.value)
+		})
     }
 	
 	func numberOfSections(in tableView: UITableView) -> Int {

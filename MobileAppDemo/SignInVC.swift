@@ -144,7 +144,7 @@ class SignInVC: UIViewController
 				print("AUTH: FAILED TO SAVE UID TO KEYCHAIN")
 			}
 			// TODO: It would appear one wants to use credential.provider instead. Let's see if it makes any difference first
-			DataService.instance.createFirebaseDBUser(user: User(uid: user.uid, provider: user.providerID))
+			User(uid: user.uid, provider: user.providerID).update()
 		}
 		performSegue(withIdentifier: "ToFeed", sender: nil)
 	}
