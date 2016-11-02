@@ -64,7 +64,10 @@ class FeedVC: UIViewController, UITableViewDataSource, UIImagePickerControllerDe
 	{
 		if let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as? MessageCell
 		{
-			cell.configureCell(post: posts[indexPath.row])
+			let post = posts[indexPath.row]
+			let cachedImage = Storage.imageCache.object(forKey: post.imageUrl as NSString)
+			
+			cell.configureCell(post: post, image: cachedImage)
 			return cell
 		}
 		else
