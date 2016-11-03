@@ -331,6 +331,9 @@
                                                                                         <constraint firstAttribute="width" constant="48" id="eAH-r9-2cc"/>
                                                                                     </constraints>
                                                                                     <state key="normal" image="empty-heart"/>
+                                                                                    <connections>
+                                                                                        <action selector="LikeButtonPressed:" destination="SPr-b4-ZnP" eventType="touchUpInside" id="Eml-eN-NYt"/>
+                                                                                    </connections>
                                                                                 </button>
                                                                             </subviews>
                                                                         </stackView>

@@ -37,22 +37,14 @@ class FeedVC: UIViewController, UITableViewDataSource, UIImagePickerControllerDe
 		feedTableView.rowHeight = UITableViewAutomaticDimension
 		feedTableView.estimatedRowHeight = 320
 		
-		Post.parentReference.observe(.value, with:
+		// TODO: Might consider stopping the observation at some point
+		_ = Post.observeList()
 		{
-			snapshot in
+			posts in
 			
-			self.posts = [] // Clears previous posts
-			if let postSnaps = snapshot.children.allObjects as? [FIRDataSnapshot]
-			{
-				for postSnap in postSnaps
-				{
-					print("PARSE: \(postSnap.value)")
-					let json = JSON(postSnap.value)
-					self.posts.append(Post.fromJSON(json, id: postSnap.key))
-				}
-			}
+			self.posts = posts
 			self.feedTableView.reloadData()
-		})
+		}
     }
 	
 	func numberOfSections(in tableView: UITableView) -> Int
@@ -146,7 +138,7 @@ class FeedVC: UIViewController, UITableViewDataSource, UIImagePickerControllerDe
 	@IBAction func signOutButtonPressed(_ sender: AnyObject)
 	{
 		try! FIRAuth.auth()?.signOut()
-		KeychainWrapper.standard.removeObject(forKey: KEY_UID)
+		User.currentUserId = nil
 		dismiss(animated: true, completion: nil)
 	}
 }

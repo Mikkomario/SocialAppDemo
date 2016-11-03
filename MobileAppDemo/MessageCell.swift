@@ -54,4 +54,9 @@ class MessageCell: UITableViewCell
 			}
 		}
 	}
+	
+	@IBAction func LikeButtonPressed(_ sender: UIButton)
+	{
+		
+	}
 }

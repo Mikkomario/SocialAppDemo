@@ -25,9 +25,10 @@ class SignInVC: UIViewController
 	
 	override func viewDidAppear(_ animated: Bool)
 	{
-		if let _ = KeychainWrapper.standard.string(forKey: KEY_UID)
+		if User.currentUserId != nil
 		{
 			print("AUTH: USING EXISTING KEYCHAIN")
+			User.startTrackingCurrentUser()
 			performSegue(withIdentifier: "ToFeed", sender: nil)
 		}
 		else
@@ -135,16 +136,13 @@ class SignInVC: UIViewController
 	{
 		if let user = user
 		{
-			if KeychainWrapper.standard.set(user.uid, forKey: KEY_UID)
-			{
-				print("AUTH: UID SAVED TO KEYCHAIN")
-			}
-			else
-			{
-				print("AUTH: FAILED TO SAVE UID TO KEYCHAIN")
-			}
+			let currentUser = User(uid: user.uid, provider: user.providerID)
+			currentUser.update()
+			
+			User.currentUserId = currentUser.id
+			User.startTrackingCurrentUser()
 			// TODO: It would appear one wants to use credential.provider instead. Let's see if it makes any difference first
-			User(uid: user.uid, provider: user.providerID).update()
+			
 		}
 		performSegue(withIdentifier: "ToFeed", sender: nil)
 	}

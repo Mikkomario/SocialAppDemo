@@ -8,26 +8,116 @@
 
 import Foundation
 import SwiftyJSON
+import SwiftKeychainWrapper
+import FirebaseDatabase
 
 struct User: Storable
 {
-	private let _uid: String
-	
 	static let parents = ["users"]
 	
-	var provider: String
+	private static var currentUserListeningHandle: FIRDatabaseHandle?
 	
-	var id: String {return _uid}
-	var properties: [String : Any] {return ["provider" : provider]}
+	var provider: String
+	var likedPostIds = [String]()
+	
+	let id: String
+	var properties: [String : Any]
+	{
+		let likes = Dictionary(elements: likedPostIds.map({(postId) in (postId, true)}))
+		return ["provider" : provider, "likes" : likes]
+	}
+	
+	private static var _currentUser: User?
+	static var currentUser: User?
+	{
+		get {return _currentUser}
+		set {currentUserId = newValue?.id}
+	}
+	
+	static var currentUserId: String?
+	{
+		get
+		{
+			if let currentUser = currentUser
+			{
+				return currentUser.id
+			}
+			else
+			{
+				return KeychainWrapper.standard.string(forKey: KEY_UID)
+			}
+		}
+		set
+		{
+			// Stops previous user tracking (if applicable)
+			if let handle = currentUserListeningHandle, let userId = currentUserId
+			{
+				User.stopObserver(ofId: userId, withHandle: handle)
+				currentUserListeningHandle = nil
+			}
+			
+			if let uid = newValue
+			{
+				KeychainWrapper.standard.set(uid, forKey: KEY_UID)
+				
+				// Starts new user tracking (if applicable)
+				startUserTracking(forId: uid)
+			}
+			else
+			{
+				KeychainWrapper.standard.removeObject(forKey: KEY_UID)
+				_currentUser = nil
+			}
+		}
+	}
+	
+	static var currentUserReference: FIRDatabaseReference?
+	{
+		if let currentUserId = currentUserId
+		{
+			return parentReference.child(currentUserId)
+		}
+		else
+		{
+			return nil
+		}
+	}
 	
 	init(uid: String, provider: String)
 	{
-		self._uid = uid
+		self.id = uid
 		self.provider = provider
 	}
 	
 	static func fromJSON(_ json: JSON, id: String) -> User
 	{
-		return User(uid: id, provider: json["provider"].stringValue)
+		var user = User(uid: id, provider: json["provider"].stringValue)
+		if let likeDict = json["likes"].dictionary
+		{
+			user.likedPostIds = likeDict.map() { (key, value) in key }
+		}
+		return user
+	}
+	
+	func likes(post: Post) -> Bool {return likedPostIds.contains(post.id)}
+	
+	static func startTrackingCurrentUser()
+	{
+		if let userId = currentUserId
+		{
+			startUserTracking(forId: userId)
+		}
+	}
+	
+	private static func startUserTracking(forId id: String)
+	{
+		if currentUserListeningHandle == nil
+		{
+			currentUserListeningHandle = User.observe(id: id)
+			{
+				user in
+				_currentUser = user
+			}
+		}
 	}
 }
