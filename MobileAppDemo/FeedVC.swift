@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+import FirebaseStorage
 import SwiftKeychainWrapper
 import SwiftyJSON
 
@@ -17,8 +18,12 @@ class FeedVC: UIViewController, UITableViewDataSource, UIImagePickerControllerDe
 	@IBOutlet weak var addImageView: UIImageView!
 	@IBOutlet weak var feedTableView: UITableView!
 
+	@IBOutlet weak var captionInputView: InputTextView!
+	
+	
 	var posts = [Post]()
 	private var imagePicker = UIImagePickerController()
+	private var imageSelected = false
 	
     override func viewDidLoad()
 	{
@@ -67,7 +72,7 @@ class FeedVC: UIViewController, UITableViewDataSource, UIImagePickerControllerDe
 			let post = posts[indexPath.row]
 			let cachedImage = Storage.imageCache.object(forKey: post.imageUrl as NSString)
 			
-			cell.configureCell(post: post, image: cachedImage)
+			cell.configureCell(tableView: tableView, post: post, image: cachedImage)
 			return cell
 		}
 		else
@@ -81,6 +86,7 @@ class FeedVC: UIViewController, UITableViewDataSource, UIImagePickerControllerDe
 		if let image = info[UIImagePickerControllerEditedImage] as? UIImage
 		{
 			addImageView.image = image
+			imageSelected = true
 		}
 		picker.dismiss(animated: true, completion: nil)
 	}
@@ -90,9 +96,52 @@ class FeedVC: UIViewController, UITableViewDataSource, UIImagePickerControllerDe
 		present(imagePicker, animated: true, completion: nil)
 	}
 	
-	@IBAction func postButtonPressed(_ sender: AnyObject) {
+	@IBAction func postButtonPressed(_ sender: AnyObject)
+	{
+		guard let caption = captionInputView.text, !caption.isEmpty else
+		{
+			// TODO: Inform the user
+			print("POST: Caption must be entered")
+			return
+		}
+		
+		guard let image = addImageView.image, imageSelected else
+		{
+			print("POST: Image must be selected")
+			return
+		}
+		
+		imageSelected = false
+		addImageView.image = UIImage(named: "add-image")
+		captionInputView.text = nil
+		
+		// Uploads the image
+		if let imageData = UIImageJPEGRepresentation(image, 0.2)
+		{
+			let imageUid = NSUUID().uuidString
+			let metadata = FIRStorageMetadata()
+			metadata.contentType = "image/jpeg"
+			
+			Storage.REF_POST_IMAGES.child(imageUid).put(imageData, metadata: metadata)
+			{
+				(metadata, error) in
+				
+				if let error = error
+				{
+					print("STORAGE: Failed to upload image to storage \(error)")
+				}
+				
+				if let downloadURL = metadata?.downloadURL()?.absoluteString
+				{
+					// Caches the image for faster display
+					Storage.imageCache.setObject(image, forKey: downloadURL as NSString)
+					
+					print("STORAGE: Successfully uploaded image to storage")
+					_ = Post.post(caption: caption, imageUrl: downloadURL)
+				}
+			}
+		}
 	}
-	
 	
 	@IBAction func signOutButtonPressed(_ sender: AnyObject)
 	{

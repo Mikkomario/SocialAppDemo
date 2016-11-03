@@ -42,4 +42,6 @@ extension Storable
 	var reference: FIRDatabaseReference { get {return type(of: self).parentReference.child(id)} }
 	
 	func update() { reference.updateChildValues(properties) }
+	
+	// TODO: Create methods for reading / observing
 }

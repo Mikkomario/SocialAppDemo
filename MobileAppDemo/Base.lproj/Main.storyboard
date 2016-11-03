@@ -317,8 +317,8 @@
                                                                             <subviews>
                                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="Ll1-D8-aNZ" customClass="CircleImage" customModule="MobileAppDemo" customModuleProvider="target">
                                                                                     <constraints>
-                                                                                        <constraint firstAttribute="height" constant="64" id="h7g-ZG-IIK"/>
-                                                                                        <constraint firstAttribute="width" constant="64" id="piQ-bG-Lj7"/>
+                                                                                        <constraint firstAttribute="height" constant="48" id="h7g-ZG-IIK"/>
+                                                                                        <constraint firstAttribute="width" constant="48" id="piQ-bG-Lj7"/>
                                                                                     </constraints>
                                                                                 </imageView>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TestUser32" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o38-vk-psE">
@@ -328,14 +328,18 @@
                                                                                 </label>
                                                                                 <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y2d-pL-dfA">
                                                                                     <constraints>
-                                                                                        <constraint firstAttribute="width" constant="64" id="eAH-r9-2cc"/>
+                                                                                        <constraint firstAttribute="width" constant="48" id="eAH-r9-2cc"/>
                                                                                     </constraints>
                                                                                     <state key="normal" image="empty-heart"/>
                                                                                 </button>
                                                                             </subviews>
                                                                         </stackView>
-                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="kz0-ug-RYa"/>
-                                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ca1-Vx-geh">
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kz0-ug-RYa">
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="240" id="xAC-8Y-ooE"/>
+                                                                            </constraints>
+                                                                        </imageView>
+                                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ca1-Vx-geh">
                                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.87731681029999997" colorSpace="calibratedRGB"/>
@@ -417,6 +421,7 @@
                     </view>
                     <connections>
                         <outlet property="addImageView" destination="KKe-9q-ryg" id="Rsp-hC-YCT"/>
+                        <outlet property="captionInputView" destination="c4D-sP-Klk" id="hWi-Cn-z9Q"/>
                         <outlet property="feedTableView" destination="QSV-LU-0td" id="aWV-C5-hxo"/>
                     </connections>
                 </viewController>
@@ -434,7 +439,6 @@
         <image name="add-image" width="88" height="88"/>
         <image name="empty-heart" width="70" height="70"/>
         <image name="f" width="352" height="328"/>
-        <image name="placeholder" width="567" height="312"/>
         <image name="profile" width="113" height="155"/>
         <image name="sign-out" width="92" height="65"/>
         <image name="testLogo2" width="194" height="159"/>

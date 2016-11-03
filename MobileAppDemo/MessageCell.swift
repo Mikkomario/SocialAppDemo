@@ -19,7 +19,7 @@ class MessageCell: UITableViewCell
 	@IBOutlet weak var messageTextView: UITextView!
 	@IBOutlet weak var likeLabel: UILabel!
 	
-	func configureCell(post: Post, image: UIImage? = nil)
+	func configureCell(tableView: UITableView, post: Post, image: UIImage? = nil)
 	{
 		messageTextView.text = post.caption
 		likeLabel.text = "\(post.likes)"
@@ -46,6 +46,9 @@ class MessageCell: UITableViewCell
 					{
 						self.messageImageView.image = image
 						Storage.imageCache.setObject(image, forKey: post.imageUrl as NSString)
+						
+						tableView.beginUpdates()
+						tableView.endUpdates()
 					}
 				}
 			}

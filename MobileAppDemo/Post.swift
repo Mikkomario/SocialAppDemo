@@ -29,6 +29,17 @@ struct Post: Storable
 		self.likes = likes
 	}
 	
+	// Creates a new instance by posting it to database
+	static func post(caption: String, imageUrl: String, likes: Int = 0) -> Post
+	{
+		let reference = parentReference.childByAutoId()
+		let post = Post(id: reference.key, caption: caption, imageUrl: imageUrl, likes: likes)
+		reference.setValue(post.properties)
+		
+		return post
+	}
+	
+	// Creates a new instance from data read from database
 	static func fromJSON(_ json: JSON, id: String) -> Post
 	{
 		return Post(id: id, caption: json["caption"].stringValue, imageUrl: json["imageUrl"].stringValue, likes: json["likes"].intValue)
