@@ -16,6 +16,10 @@ protocol Storable
 {
 	var id: String {get}
 	var properties: [String : Any] {get}
+	
+	// Updates the item's status based on JSON data
+	func updateWithJSON(_ json: JSON)
+	
 	// The parent entities for this item. Eg. ["posts"] or ["users", "someExampleCategory"]
 	static var parents: [String] {get}
 	
@@ -58,6 +62,30 @@ extension Storable
 	func setProperty(_ propertyName: String)
 	{
 		reference.child(propertyName).setValue(properties[propertyName])
+	}
+	
+	// Gets the latest state of the storable instance from the database. The instance status is updated and 
+	// completion is called afterwards
+	func get(completion: ((Self) -> ())? = nil)
+	{
+		reference.observeSingleEvent(of: .value, with:
+		{
+			snapshot in
+			
+			self.updateWithJSON(JSON(snapshot.value))
+			completion?(self)
+		})
+	}
+	
+	func getProperty(withName propertyName: String, completion: ((Self) -> ())? = nil)
+	{
+		reference.child(propertyName).observeSingleEvent(of: .value, with:
+		{
+			snapshot in
+			
+			self.updateWithJSON(JSON(snapshot.value))
+			completion?(self)
+		})
 	}
 	
 	static func get(id: String, completion: @escaping (Self) -> ())

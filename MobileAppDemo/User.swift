@@ -91,12 +91,21 @@ final class User: Storable
 	
 	static func fromJSON(_ json: JSON, id: String) -> User
 	{
-		let user = User(uid: id, provider: json["provider"].stringValue)
+		let user = User(uid: id, provider: "")
+		user.updateWithJSON(json)
+		return user
+	}
+	
+	func updateWithJSON(_ json: JSON)
+	{
+		if let provider = json["provider"].string
+		{
+			self.provider = provider
+		}
 		if let likeDict = json["likes"].dictionary
 		{
-			user.likedPostIds = likeDict.map() { (key, value) in key }
+			likedPostIds = likeDict.map() { (key, value) in key }
 		}
-		return user
 	}
 	
 	func likes(post: Post) -> Bool {return likedPostIds.contains(post.id)}
