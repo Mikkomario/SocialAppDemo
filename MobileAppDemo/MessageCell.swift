@@ -90,8 +90,8 @@ class MessageCell: UITableViewCell
 				currentUser.like(post: post)
 			}
 			
-			currentUser.setLikes()
-			post.updateLikes()
+			currentUser.pushLikes()
+			post.pushLikes()
 		}
 		else
 		{

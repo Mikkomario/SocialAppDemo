@@ -64,20 +64,20 @@ final class Post: Storable
 		reference.setValue(post.properties)
 		
 		// Updates the correct creation time as well
-		post.getProperty(withName: "created")
+		post.updateProperty(withName: "created")
 		
 		return post
 	}
 	
 	// Creates a new instance from data read from database
-	static func fromJSON(_ json: JSON, id: String) -> Post
+	static func create(from json: JSON, withId id: String) -> Post
 	{
 		let post = Post(id: id, caption: "", imageUrl: "")
-		post.updateWithJSON(json)
+		post.update(with: json)
 		return post
 	}
 	
-	func updateWithJSON(_ json: JSON)
+	func update(with json: JSON)
 	{
 		if let caption = json["caption"].string
 		{
@@ -97,5 +97,5 @@ final class Post: Storable
 		}
 	}
 	
-	func updateLikes() {updateProperty("likes")}
+	func pushLikes() {pushProperty("likes")}
 }

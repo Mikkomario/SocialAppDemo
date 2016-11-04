@@ -89,14 +89,14 @@ final class User: Storable
 		self.provider = provider
 	}
 	
-	static func fromJSON(_ json: JSON, id: String) -> User
+	static func create(from json: JSON, withId id: String) -> User
 	{
 		let user = User(uid: id, provider: "")
-		user.updateWithJSON(json)
+		user.update(with: json)
 		return user
 	}
 	
-	func updateWithJSON(_ json: JSON)
+	func update(with json: JSON)
 	{
 		if let provider = json["provider"].string
 		{
@@ -123,7 +123,7 @@ final class User: Storable
 		likedPostIds = likedPostIds.filter({$0 != post.id})
 	}
 	
-	func setLikes() {setProperty("likes")}
+	func pushLikes() {pushProperty("likes")}
 	
 	static func startTrackingCurrentUser()
 	{

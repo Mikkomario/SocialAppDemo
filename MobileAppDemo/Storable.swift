@@ -18,13 +18,13 @@ protocol Storable
 	var properties: [String : Any] {get}
 	
 	// Updates the item's status based on JSON data
-	func updateWithJSON(_ json: JSON)
+	func update(with json: JSON)
 	
 	// The parent entities for this item. Eg. ["posts"] or ["users", "someExampleCategory"]
 	static var parents: [String] {get}
 	
 	// TODO: Could add a throws keyword here
-	static func fromJSON(_ json: JSON, id: String) -> Self
+	static func create(from json: JSON, withId id: String) -> Self
 }
 
 extension Storable
@@ -50,40 +50,45 @@ extension Storable
 		return parentReference.child(id)
 	}
 	
-	func update() { reference.updateChildValues(properties) }
-	
-	func set() { reference.setValue(properties) }
-	
-	func updateProperty(_ propertyName: String)
+	func push(overwrite: Bool = false)
 	{
-		reference.updateChildValues([propertyName : properties[propertyName]!])
+		if overwrite
+		{
+			reference.setValue(properties)
+		}
+		else
+		{
+			reference.updateChildValues(properties)
+		}
 	}
 	
-	func setProperty(_ propertyName: String)
+	func pushProperty(_ propertyName: String)
 	{
 		reference.child(propertyName).setValue(properties[propertyName])
 	}
 	
 	// Gets the latest state of the storable instance from the database. The instance status is updated and 
 	// completion is called afterwards
-	func get(completion: ((Self) -> ())? = nil)
+	func update(completion: ((Self) -> ())? = nil)
 	{
 		reference.observeSingleEvent(of: .value, with:
 		{
 			snapshot in
 			
-			self.updateWithJSON(JSON(snapshot.value))
+			self.update(with: JSON(snapshot.value))
 			completion?(self)
 		})
 	}
 	
-	func getProperty(withName propertyName: String, completion: ((Self) -> ())? = nil)
+	func update(with snapshot: FIRDataSnapshot) {update(with: JSON(snapshot.value))}
+	
+	func updateProperty(withName propertyName: String, completion: ((Self) -> ())? = nil)
 	{
 		reference.child(propertyName).observeSingleEvent(of: .value, with:
 		{
 			snapshot in
 			
-			self.updateWithJSON(JSON(snapshot.value))
+			self.update(with: snapshot)
 			completion?(self)
 		})
 	}
@@ -93,7 +98,7 @@ extension Storable
 		reference(forId: id).observeSingleEvent(of: .value, with:
 		{
 			snapshot in
-			completion(fromJSON(JSON(snapshot.value), id: id))
+			completion(create(from: snapshot))
 		})
 	}
 	
@@ -102,17 +107,7 @@ extension Storable
 		parentReference.observeSingleEvent(of: .value, with:
 		{
 			snapshot in
-			
-			var items = [Self]()
-			if let itemSnapshots = snapshot.children.allObjects as? [FIRDataSnapshot]
-			{
-				for snapshot in itemSnapshots
-				{
-					items.append(fromJSON(JSON(snapshot.value), id: snapshot.key))
-				}
-			}
-			
-			completion(items)
+			completion(createList(from: snapshot))
 		})
 	}
 	
@@ -121,7 +116,7 @@ extension Storable
 		let handle = reference(forId: id).observe(eventType, with:
 		{
 			snapshot in
-			handler(fromJSON(JSON(snapshot.value), id: id))
+			handler(create(from: snapshot))
 		})
 		
 		return handle
@@ -137,17 +132,7 @@ extension Storable
 		let handle = parentReference.observe(eventType, with:
 		{
 			snapshot in
-			
-			var items = [Self]()
-			if let itemSnapshots = snapshot.children.allObjects as? [FIRDataSnapshot]
-			{
-				for snapshot in itemSnapshots
-				{
-					items.append(fromJSON(JSON(snapshot.value), id: snapshot.key))
-				}
-			}
-			
-			handler(items)
+			handler(createList(from: snapshot))
 		})
 		
 		return handle
@@ -156,5 +141,24 @@ extension Storable
 	static func stopListObserver(withHandle handle: FIRDatabaseHandle)
 	{
 		parentReference.removeObserver(withHandle: handle)
+	}
+	
+	static func createList(from snapshot: FIRDataSnapshot) -> [Self]
+	{
+		var items = [Self]()
+		if let itemSnapshots = snapshot.children.allObjects as? [FIRDataSnapshot]
+		{
+			for snapshot in itemSnapshots
+			{
+				items.append(create(from: snapshot))
+			}
+		}
+		
+		return items
+	}
+	
+	static func create(from snapshot: FIRDataSnapshot) -> Self
+	{
+		return create(from: JSON(snapshot.value), withId: snapshot.key)
 	}
 }
