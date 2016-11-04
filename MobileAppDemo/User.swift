@@ -11,7 +11,7 @@ import SwiftyJSON
 import SwiftKeychainWrapper
 import FirebaseDatabase
 
-struct User: Storable
+final class User: Storable
 {
 	static let parents = ["users"]
 	
@@ -23,7 +23,7 @@ struct User: Storable
 	let id: String
 	var properties: [String : Any]
 	{
-		let likes = Dictionary(elements: likedPostIds.map({(postId) in (postId, true)}))
+		let likes = Dictionary(elements: likedPostIds.map({(postId) in (postId, true)})) as NSDictionary
 		return ["provider" : provider, "likes" : likes]
 	}
 	
@@ -91,7 +91,7 @@ struct User: Storable
 	
 	static func fromJSON(_ json: JSON, id: String) -> User
 	{
-		var user = User(uid: id, provider: json["provider"].stringValue)
+		let user = User(uid: id, provider: json["provider"].stringValue)
 		if let likeDict = json["likes"].dictionary
 		{
 			user.likedPostIds = likeDict.map() { (key, value) in key }
@@ -100,6 +100,21 @@ struct User: Storable
 	}
 	
 	func likes(post: Post) -> Bool {return likedPostIds.contains(post.id)}
+	
+	func like(post: Post)
+	{
+		if !likes(post: post)
+		{
+			likedPostIds.append(post.id)
+		}
+	}
+	
+	func unlike(post: Post)
+	{
+		likedPostIds = likedPostIds.filter({$0 != post.id})
+	}
+	
+	func setLikes() {setProperty("likes")}
 	
 	static func startTrackingCurrentUser()
 	{

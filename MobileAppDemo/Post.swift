@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-struct Post: Storable
+final class Post: Storable
 {
 	static let parents = ["posts"]
 
@@ -44,4 +44,6 @@ struct Post: Storable
 	{
 		return Post(id: id, caption: json["caption"].stringValue, imageUrl: json["imageUrl"].stringValue, likes: json["likes"].intValue)
 	}
+	
+	func updateLikes() {updateProperty("likes")}
 }

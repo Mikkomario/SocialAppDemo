@@ -19,10 +19,30 @@ class MessageCell: UITableViewCell
 	@IBOutlet weak var messageTextView: UITextView!
 	@IBOutlet weak var likeLabel: UILabel!
 	
+	private var post: Post!
+	
 	func configureCell(tableView: UITableView, post: Post, image: UIImage? = nil)
 	{
+		self.post = post
+		
 		messageTextView.text = post.caption
 		likeLabel.text = "\(post.likes)"
+		
+		if let currentUser = User.currentUser
+		{
+			if currentUser.likes(post: post)
+			{
+				likeButton.setImage(#imageLiteral(resourceName: "filled-heart"), for: .normal)
+			}
+			else
+			{
+				likeButton.setImage(#imageLiteral(resourceName: "empty-heart"), for: .normal)
+			}
+		}
+		else
+		{
+			print("ERROR: No user logged in")
+		}
 		
 		if let image = image
 		{
@@ -57,6 +77,25 @@ class MessageCell: UITableViewCell
 	
 	@IBAction func LikeButtonPressed(_ sender: UIButton)
 	{
-		
+		if let currentUser = User.currentUser
+		{
+			if currentUser.likes(post: post)
+			{
+				post.likes -= 1
+				currentUser.unlike(post: post)
+			}
+			else
+			{
+				post.likes += 1
+				currentUser.like(post: post)
+			}
+			
+			currentUser.setLikes()
+			post.updateLikes()
+		}
+		else
+		{
+			print("ERROR: No user logged in")
+		}
 	}
 }

@@ -48,6 +48,18 @@ extension Storable
 	
 	func update() { reference.updateChildValues(properties) }
 	
+	func set() { reference.setValue(properties) }
+	
+	func updateProperty(_ propertyName: String)
+	{
+		reference.updateChildValues([propertyName : properties[propertyName]!])
+	}
+	
+	func setProperty(_ propertyName: String)
+	{
+		reference.child(propertyName).setValue(properties[propertyName])
+	}
+	
 	static func get(id: String, completion: @escaping (Self) -> ())
 	{
 		reference(forId: id).observeSingleEvent(of: .value, with:
