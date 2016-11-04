@@ -93,54 +93,64 @@ extension Storable
 		})
 	}
 	
-	static func get(id: String, completion: @escaping (Self) -> ())
+	static func get(from query: FIRDatabaseQuery, completion: @escaping (Self) -> ())
 	{
-		reference(forId: id).observeSingleEvent(of: .value, with:
+		query.observeSingleEvent(of: .value, with:
 		{
 			snapshot in
 			completion(create(from: snapshot))
 		})
 	}
 	
-	static func getList(completion: @escaping ([Self]) -> ())
+	static func get(id: String, completion: @escaping (Self) -> ())
 	{
-		parentReference.observeSingleEvent(of: .value, with:
+		get(from: reference(forId: id), completion: completion)
+	}
+	
+	static func getList(from query: FIRDatabaseQuery, completion: @escaping ([Self]) -> ())
+	{
+		query.observeSingleEvent(of: .value, with:
 		{
 			snapshot in
 			completion(createList(from: snapshot))
 		})
 	}
 	
-	static func observe(id: String, forEventsOfType eventType: FIRDataEventType = .value, calling handler: @escaping (Self) -> ()) -> FIRDatabaseHandle
+	static func getList(completion: @escaping ([Self]) -> ())
 	{
-		let handle = reference(forId: id).observe(eventType, with:
-		{
-			snapshot in
-			handler(create(from: snapshot))
+		getList(from: parentReference, completion: completion)
+	}
+	
+	static func observe(from query: FIRDatabaseQuery, forEventsOfType eventType: FIRDataEventType = .value, calling handler: @escaping (Self) -> ()) -> ObserveTask
+	{
+		let handle = query.observe(eventType, with:
+			{
+				snapshot in
+				handler(create(from: snapshot))
 		})
 		
-		return handle
+		return ObserveTask(ref: query, handle: handle)
 	}
 	
-	static func stopObserver(ofId id: String, withHandle handle: FIRDatabaseHandle)
+	static func observe(id: String, forEventsOfType eventType: FIRDataEventType = .value, calling handler: @escaping (Self) -> ()) -> ObserveTask
 	{
-		reference(forId: id).removeObserver(withHandle: handle)
+		return observe(from: reference(forId: id), calling: handler)
 	}
 	
-	static func observeList(forEventsOfType eventType: FIRDataEventType = .value, calling handler: @escaping ([Self]) -> ()) -> FIRDatabaseHandle
+	static func observeList(from query: FIRDatabaseQuery, forEventsOfType eventType: FIRDataEventType = .value, calling handler: @escaping ([Self]) -> ()) -> ObserveTask
 	{
-		let handle = parentReference.observe(eventType, with:
+		let handle = query.observe(eventType, with:
 		{
 			snapshot in
 			handler(createList(from: snapshot))
 		})
 		
-		return handle
+		return ObserveTask(ref: query, handle: handle)
 	}
 	
-	static func stopListObserver(withHandle handle: FIRDatabaseHandle)
+	static func observeList(forEventsOfType eventType: FIRDataEventType = .value, calling handler: @escaping ([Self]) -> ()) -> ObserveTask
 	{
-		parentReference.removeObserver(withHandle: handle)
+		return observeList(from: parentReference, forEventsOfType: eventType, calling: handler)
 	}
 	
 	static func createList(from snapshot: FIRDataSnapshot) -> [Self]

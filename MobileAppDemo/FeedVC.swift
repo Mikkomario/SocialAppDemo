@@ -38,11 +38,11 @@ class FeedVC: UIViewController, UITableViewDataSource, UIImagePickerControllerDe
 		feedTableView.estimatedRowHeight = 320
 		
 		// TODO: Might consider stopping the observation at some point
-		_ = Post.observeList()
+		_ = Post.observeList(from: Post.parentReference.queryOrdered(byChild: Post.PROPERTY_CREATED))
 		{
 			posts in
 			
-			self.posts = posts
+			self.posts = posts.reversed()
 			self.feedTableView.reloadData()
 		}
     }

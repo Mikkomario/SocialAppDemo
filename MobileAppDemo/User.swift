@@ -15,7 +15,7 @@ final class User: Storable
 {
 	static let parents = ["users"]
 	
-	private static var currentUserListeningHandle: FIRDatabaseHandle?
+	private static var currentListeningTask: ObserveTask?
 	
 	var provider: String
 	var likedPostIds = [String]()
@@ -50,10 +50,10 @@ final class User: Storable
 		set
 		{
 			// Stops previous user tracking (if applicable)
-			if let handle = currentUserListeningHandle, let userId = currentUserId
+			if let currentListeningTask = currentListeningTask
 			{
-				User.stopObserver(ofId: userId, withHandle: handle)
-				currentUserListeningHandle = nil
+				currentListeningTask.stop()
+				self.currentListeningTask = nil
 			}
 			
 			if let uid = newValue
@@ -135,9 +135,9 @@ final class User: Storable
 	
 	private static func startUserTracking(forId id: String)
 	{
-		if currentUserListeningHandle == nil
+		if currentListeningTask == nil || !currentListeningTask!.isActive
 		{
-			currentUserListeningHandle = User.observe(id: id)
+			currentListeningTask = User.observe(id: id)
 			{
 				user in
 				_currentUser = user

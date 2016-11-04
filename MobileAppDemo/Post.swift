@@ -13,6 +13,8 @@ import FirebaseDatabase
 final class Post: Storable
 {
 	static let parents = ["posts"]
+	
+	static let PROPERTY_CREATED = "created"
 
 	let id: String
 	
@@ -45,7 +47,7 @@ final class Post: Storable
 			return FIRServerValue.timestamp()
 		}
 	}
-	var properties: [String : Any] { return ["caption" : caption, "imageUrl" : imageUrl, "likes" : likes, "created" : createdPropertyValue] }
+	var properties: [String : Any] { return ["caption" : caption, "imageUrl" : imageUrl, "likes" : likes, Post.PROPERTY_CREATED : createdPropertyValue] }
 	
 	init(id: String, caption: String, imageUrl: String, likes: Int = 0, createdOnServer created: NSDate? = nil)
 	{
@@ -64,7 +66,7 @@ final class Post: Storable
 		reference.setValue(post.properties)
 		
 		// Updates the correct creation time as well
-		post.updateProperty(withName: "created")
+		post.updateProperty(withName: Post.PROPERTY_CREATED)
 		
 		return post
 	}
@@ -91,7 +93,7 @@ final class Post: Storable
 		{
 			self.likes = likes
 		}
-		if let created = json["created"].double
+		if let created = json[Post.PROPERTY_CREATED].double
 		{
 			self.serverCreated = NSDate(timeIntervalSince1970: created)
 		}
