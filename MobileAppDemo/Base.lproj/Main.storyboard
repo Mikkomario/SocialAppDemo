@@ -83,9 +83,6 @@
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.55000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" text="OR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EBC-hi-hA4">
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="32" id="lnB-bf-fei"/>
-                                                </constraints>
                                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="24"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -211,10 +208,10 @@
             </objects>
             <point key="canvasLocation" x="24.637681159420293" y="35.054347826086961"/>
         </scene>
-        <!--View Controller-->
+        <!--RegisterVC-->
         <scene sceneID="XUQ-9y-c11">
             <objects>
-                <viewController storyboardIdentifier="RegisterVC" id="FSp-tf-eo1" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegisterVC" id="FSp-tf-eo1" customClass="RegisterVC" customModule="MobileAppDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="awq-fx-Phv"/>
                         <viewControllerLayoutGuide type="bottom" id="Kdf-K5-6PN"/>
@@ -283,7 +280,7 @@
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="OOL-0d-tjt">
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.85000002384185791" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vDD-wv-t01">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.55000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vDD-wv-t01">
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="80" id="mkB-zF-ayA"/>
                                                                         </constraints>
@@ -291,7 +288,7 @@
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="something@example.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qb9-1p-lV3">
+                                                                    <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="something@example.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qb9-1p-lV3">
                                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.86575969829999999" colorSpace="calibratedRGB"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
@@ -315,7 +312,7 @@
                                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="To9-KJ-1Hj">
                                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.86575969829999999" colorSpace="calibratedRGB"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                                                                     </textField>
                                                                 </subviews>
                                                             </stackView>
@@ -332,7 +329,7 @@
                                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password again" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vz9-3n-CJo">
                                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.86575969829999999" colorSpace="calibratedRGB"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                                                                     </textField>
                                                                 </subviews>
                                                             </stackView>
@@ -351,6 +348,9 @@
                                                         <state key="normal" title="cancel">
                                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="cancelBtnPressed:" destination="FSp-tf-eo1" eventType="touchUpInside" id="cF3-P3-1qK"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7uc-JM-R8j">
                                                         <color key="backgroundColor" red="0.96078431369999995" green="0.0" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
@@ -361,6 +361,9 @@
                                                         <state key="normal" title="Register">
                                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="RegisterBtnPressed:" destination="FSp-tf-eo1" eventType="touchUpInside" id="p5A-CY-1Jl"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -398,6 +401,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="confirmPasswordField" destination="vz9-3n-CJo" id="ckj-H9-1OK"/>
+                        <outlet property="emailField" destination="Qb9-1p-lV3" id="USZ-bh-VDb"/>
+                        <outlet property="passwordField" destination="To9-KJ-1Hj" id="J44-BC-Vjz"/>
+                        <outlet property="usernameField" destination="oiX-Zz-EOl" id="0XR-bl-SgR"/>
                         <segue destination="eGC-lp-B3K" kind="show" identifier="ToFeed" id="CUT-rK-vJh"/>
                     </connections>
                 </viewController>
@@ -644,6 +651,6 @@
         <image name="testLogo2" width="194" height="159"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="QJ2-6m-R8k"/>
+        <segue reference="CUT-rK-vJh"/>
     </inferredMetricsTieBreakers>
 </document>

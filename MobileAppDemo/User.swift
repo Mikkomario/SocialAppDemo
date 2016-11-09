@@ -19,14 +19,19 @@ final class User: Storable
 	
 	var provider: String
 	var userName: String
-	var imageUrl: String
+	var imageUrl: String?
 	var likedPostIds = [String]()
 	
 	let id: String
 	var properties: [String : Any]
 	{
 		let likes = Dictionary(elements: likedPostIds.map({(postId) in (postId, true)})) as NSDictionary
-		return ["provider" : provider, "userName" : userName, "imageUrl" : imageUrl, "likes" : likes]
+		var dict = ["provider" : provider, "userName" : userName, "likes" : likes] as [String : Any]
+		if let imageUrl = imageUrl
+		{
+			dict["imageUrl"] = imageUrl
+		}
+		return dict
 	}
 	
 	private static var _currentUser: User?
@@ -85,7 +90,7 @@ final class User: Storable
 		}
 	}
 	
-	init(uid: String, provider: String, userName: String, imageUrl: String)
+	init(uid: String, provider: String, userName: String, imageUrl: String? = nil)
 	{
 		self.id = uid
 		self.provider = provider
@@ -95,9 +100,43 @@ final class User: Storable
 	
 	static func create(from json: JSON, withId id: String) -> User
 	{
-		let user = User(uid: id, provider: "", userName: "", imageUrl: "")
+		let user = User(uid: id, provider: "", userName: "")
 		user.update(with: json)
 		return user
+	}
+	
+	static func post(uid: String, provider: String, userName: String, image: UIImage? = nil, completionHandler: @escaping (User) -> ())
+	{
+		func imagePosted(url: String?)
+		{
+			let user = User(uid: uid, provider: provider, userName: userName, imageUrl: url)
+			user.push(overwrite: true)
+			completionHandler(user)
+		}
+		
+		// May need to post the image to storage first
+		if let image = image
+		{
+			Storage.upload(image: image, to: Storage.REF_USER_IMAGES)
+			{
+				(url, error) in
+				
+				if let _ = url
+				{
+					print("STORAGE: User image posted")
+				}
+				if let error = error
+				{
+					print("STORAGE: Error. Couldn't save user image. \(error)")
+				}
+				
+				imagePosted(url: url)
+			}
+		}
+		else
+		{
+			imagePosted(url: nil)
+		}
 	}
 	
 	func update(with json: JSON)
