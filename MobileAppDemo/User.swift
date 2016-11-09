@@ -18,13 +18,15 @@ final class User: Storable
 	private static var currentListeningTask: ObserveTask?
 	
 	var provider: String
+	var userName: String
+	var imageUrl: String
 	var likedPostIds = [String]()
 	
 	let id: String
 	var properties: [String : Any]
 	{
 		let likes = Dictionary(elements: likedPostIds.map({(postId) in (postId, true)})) as NSDictionary
-		return ["provider" : provider, "likes" : likes]
+		return ["provider" : provider, "userName" : userName, "imageUrl" : imageUrl, "likes" : likes]
 	}
 	
 	private static var _currentUser: User?
@@ -83,15 +85,17 @@ final class User: Storable
 		}
 	}
 	
-	init(uid: String, provider: String)
+	init(uid: String, provider: String, userName: String, imageUrl: String)
 	{
 		self.id = uid
 		self.provider = provider
+		self.userName = userName
+		self.imageUrl = imageUrl
 	}
 	
 	static func create(from json: JSON, withId id: String) -> User
 	{
-		let user = User(uid: id, provider: "")
+		let user = User(uid: id, provider: "", userName: "", imageUrl: "")
 		user.update(with: json)
 		return user
 	}
@@ -105,6 +109,14 @@ final class User: Storable
 		if let likeDict = json["likes"].dictionary
 		{
 			likedPostIds = likeDict.map() { (key, value) in key }
+		}
+		if let userName = json["userName"].string
+		{
+			self.userName = userName
+		}
+		if let imageUrl = json["imageUrl"].string
+		{
+			self.imageUrl = imageUrl
 		}
 	}
 	

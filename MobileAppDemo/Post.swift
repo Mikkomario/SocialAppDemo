@@ -21,6 +21,7 @@ final class Post: Storable
 	var caption: String
 	var imageUrl: String
 	var likes: Int
+	var creatorId: String
 
 	private let clientCreated = NSDate()
 	private var serverCreated: NSDate?
@@ -47,22 +48,23 @@ final class Post: Storable
 			return FIRServerValue.timestamp()
 		}
 	}
-	var properties: [String : Any] { return ["caption" : caption, "imageUrl" : imageUrl, "likes" : likes, Post.PROPERTY_CREATED : createdPropertyValue] }
+	var properties: [String : Any] { return ["caption" : caption, "imageUrl" : imageUrl, "creator" : creatorId, "likes" : likes, Post.PROPERTY_CREATED : createdPropertyValue] }
 	
-	init(id: String, caption: String, imageUrl: String, likes: Int = 0, createdOnServer created: NSDate? = nil)
+	init(id: String, caption: String, imageUrl: String, creatorId: String, likes: Int = 0, createdOnServer created: NSDate? = nil)
 	{
 		self.id = id
 		self.caption = caption
 		self.imageUrl = imageUrl
 		self.likes = likes
 		self.serverCreated = created
+		self.creatorId = creatorId
 	}
 	
 	// Creates a new instance by posting it to database
-	static func post(caption: String, imageUrl: String, likes: Int = 0) -> Post
+	static func post(caption: String, imageUrl: String, creatorId: String, likes: Int = 0) -> Post
 	{
 		let reference = parentReference.childByAutoId()
-		let post = Post(id: reference.key, caption: caption, imageUrl: imageUrl, likes: likes)
+		let post = Post(id: reference.key, caption: caption, imageUrl: imageUrl, creatorId: creatorId, likes: likes)
 		reference.setValue(post.properties)
 		
 		// Updates the correct creation time as well
@@ -74,7 +76,7 @@ final class Post: Storable
 	// Creates a new instance from data read from database
 	static func create(from json: JSON, withId id: String) -> Post
 	{
-		let post = Post(id: id, caption: "", imageUrl: "")
+		let post = Post(id: id, caption: "", imageUrl: "", creatorId: "")
 		post.update(with: json)
 		return post
 	}
@@ -88,6 +90,10 @@ final class Post: Storable
 		if let imageUrl = json["imageUrl"].string
 		{
 			self.imageUrl = imageUrl
+		}
+		if let creatorId = json["creator"].string
+		{
+			self.creatorId = creatorId
 		}
 		if let likes = json["likes"].int
 		{

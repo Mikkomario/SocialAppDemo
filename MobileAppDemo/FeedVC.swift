@@ -103,6 +103,12 @@ class FeedVC: UIViewController, UITableViewDataSource, UIImagePickerControllerDe
 			return
 		}
 		
+		guard let currentUserId = User.currentUserId else
+		{
+			print("POST: Can't post before logging in")
+			return
+		}
+		
 		imageSelected = false
 		addImageView.image = UIImage(named: "add-image")
 		captionInputView.text = nil
@@ -129,7 +135,7 @@ class FeedVC: UIViewController, UITableViewDataSource, UIImagePickerControllerDe
 					Storage.imageCache.setObject(image, forKey: downloadURL as NSString)
 					
 					print("STORAGE: Successfully uploaded image to storage")
-					_ = Post.post(caption: caption, imageUrl: downloadURL)
+					_ = Post.post(caption: caption, imageUrl: downloadURL, creatorId: currentUserId)
 				}
 			}
 		}
