@@ -259,6 +259,26 @@
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="QK6-4J-a3H">
                                                 <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="pTM-qk-QzC">
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.85000002384185791" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile picture" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="awy-52-JBQ">
+                                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add-image" translatesAutoresizingMaskIntoConstraints="NO" id="jYM-pu-1jY" customClass="CircleImage" customModule="MobileAppDemo" customModuleProvider="target">
+                                                                <color key="backgroundColor" red="0.96078431369999995" green="0.0" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <gestureRecognizers/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="48" id="VCv-Wg-AWN"/>
+                                                                    <constraint firstAttribute="width" constant="48" id="WMX-bn-hNL"/>
+                                                                </constraints>
+                                                                <connections>
+                                                                    <outletCollection property="gestureRecognizers" destination="9EI-Bh-wpo" appends="YES" id="pSz-ew-MAR"/>
+                                                                </connections>
+                                                            </imageView>
+                                                        </subviews>
+                                                    </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="4QG-RP-knM">
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="BNW-Jw-3uV">
@@ -280,7 +300,7 @@
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="OOL-0d-tjt">
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.55000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vDD-wv-t01">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vDD-wv-t01">
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="80" id="mkB-zF-ayA"/>
                                                                         </constraints>
@@ -288,7 +308,7 @@
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="something@example.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qb9-1p-lV3">
+                                                                    <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="something@example.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qb9-1p-lV3">
                                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.86575969829999999" colorSpace="calibratedRGB"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
@@ -404,11 +424,17 @@
                         <outlet property="confirmPasswordField" destination="vz9-3n-CJo" id="ckj-H9-1OK"/>
                         <outlet property="emailField" destination="Qb9-1p-lV3" id="USZ-bh-VDb"/>
                         <outlet property="passwordField" destination="To9-KJ-1Hj" id="J44-BC-Vjz"/>
+                        <outlet property="profileImageView" destination="jYM-pu-1jY" id="a2x-HY-kE9"/>
                         <outlet property="usernameField" destination="oiX-Zz-EOl" id="0XR-bl-SgR"/>
                         <segue destination="eGC-lp-B3K" kind="show" identifier="ToFeed" id="CUT-rK-vJh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tl4-pT-DV0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="9EI-Bh-wpo">
+                    <connections>
+                        <action selector="profilePictureTapped:" destination="FSp-tf-eo1" id="alE-tK-PFZ"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="781.60000000000002" y="451.12443778110946"/>
         </scene>
@@ -639,7 +665,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1542" y="35"/>
+            <point key="canvasLocation" x="1542" y="53"/>
         </scene>
     </scenes>
     <resources>

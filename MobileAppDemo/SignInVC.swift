@@ -150,6 +150,11 @@ class SignInVC: UIViewController
 	
 	fileprivate func firebaseAuth(with credential: FIRAuthCredential)
 	{
+		if FIRAuth.auth() == nil
+		{
+			print("AUTH: NO AUTH SERVICE AVAILABLE")
+		}
+		
 		FIRAuth.auth()?.signIn(with: credential)
 		{
 			(user, error) in

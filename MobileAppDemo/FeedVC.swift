@@ -21,9 +21,11 @@ class FeedVC: UIViewController, UITableViewDataSource, UIImagePickerControllerDe
 	@IBOutlet weak var captionInputView: InputTextView!
 	
 	
-	var posts = [Post]()
+	private var posts = [Post]()
 	private var imagePicker = UIImagePickerController()
 	private var imageSelected = false
+	
+	private var readPosts: ObserveTask?
 	
     override func viewDidLoad()
 	{
@@ -37,8 +39,7 @@ class FeedVC: UIViewController, UITableViewDataSource, UIImagePickerControllerDe
 		feedTableView.rowHeight = UITableViewAutomaticDimension
 		feedTableView.estimatedRowHeight = 320
 		
-		// TODO: Might consider stopping the observation at some point
-		_ = Post.observeList(from: Post.parentReference.queryOrdered(byChild: Post.PROPERTY_CREATED))
+		readPosts = Post.observeList(from: Post.parentReference.queryOrdered(byChild: Post.PROPERTY_CREATED))
 		{
 			posts in
 			
@@ -143,6 +144,9 @@ class FeedVC: UIViewController, UITableViewDataSource, UIImagePickerControllerDe
 	
 	@IBAction func signOutButtonPressed(_ sender: AnyObject)
 	{
+		// Doesn't listen to posts anymore
+		readPosts?.stop()
+		
 		try! FIRAuth.auth()?.signOut()
 		User.currentUserId = nil
 		dismiss(animated: true, completion: nil)
