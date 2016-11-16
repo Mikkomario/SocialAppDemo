@@ -83,28 +83,15 @@ class SignInVC: UIViewController
 						print("AUTH: USER NOT FOUND -> CREATING NEW USER")
 						print("AUTH: Sending email \(email) and password \(password.characters.count) characters")
 						self.performSegue(withIdentifier: "RegisterUser", sender: RegisterInfo(email: email, password: password))
-						/*
-						FIRAuth.auth()?.createUser(withEmail: email, password: password)
-						{
-							(user, error) in
-							
-							if let error = error
-							{
-								print("AUTH: FAILED TO CREATE USER \(error)")
-							}
-							else
-							{
-								print("AUTH: SUCCESSFULLY CREATED NEW USER")
-								self.completeLogin(user: user)
-							}
-						}*/
 					default: print("AUTH: ERROR IN EMAIL LOGIN \(error)") // TODO: Inform user
 					}
 				}
 				else
 				{
 					print("AUTH: EMAIL AUTH SUCCESSFUL")
-					self.completeLogin(user: user)
+					User.currentUserId = user?.uid
+					User.startTrackingCurrentUser()
+					self.performSegue(withIdentifier: "ToFeed", sender: nil)
 				}
 			}
 		}
@@ -198,22 +185,6 @@ class SignInVC: UIViewController
 				}
 			}
 		}
-	}
-	
-	private func completeLogin(user: FIRUser?)
-	{
-		if let user = user
-		{
-			// TODO: FIX THIS
-			let currentUser = User(uid: user.uid, provider: user.providerID, userName: "", imageUrl: "")
-			currentUser.update()
-			
-			User.currentUserId = currentUser.id
-			User.startTrackingCurrentUser()
-			// TODO: It would appear one wants to use credential.provider instead. Let's see if it makes any difference first
-			
-		}
-		performSegue(withIdentifier: "ToFeed", sender: nil)
 	}
 }
 

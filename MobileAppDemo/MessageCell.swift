@@ -21,13 +21,39 @@ class MessageCell: UITableViewCell
 	
 	private var post: Post!
 	
-	func configureCell(tableView: UITableView, post: Post, image: UIImage? = nil)
+	func configureCell(tableView: UITableView, post: Post)
 	{
 		self.post = post
 		
+		// Basic info
 		messageTextView.text = post.caption
 		likeLabel.text = "\(post.likes)"
 		
+		// Post user
+		User.get(id: post.creatorId)
+		{
+			postCreator in 
+			
+			self.titleLabel.text = postCreator.userName
+			
+			// Profile-pic
+			if let profilePicUrl = postCreator.imageUrl
+			{
+				Storage.getImage(with: profilePicUrl)
+				{
+					profilePic in
+					
+					self.profileImageView.image = profilePic
+				}
+			}
+			else
+			{
+				// TODO: Use unkown user icon instead of nil (no asset at this time)
+				self.profileImageView.image = nil
+			}
+		}
+		
+		// Liking
 		if let currentUser = User.currentUser
 		{
 			if currentUser.likes(post: post)
@@ -44,34 +70,15 @@ class MessageCell: UITableViewCell
 			print("ERROR: No user logged in")
 		}
 		
-		if let image = image
+		// Image
+		Storage.getImage(with: post.imageUrl)
 		{
-			messageImageView.image = image
-		}
-		else
-		{
-			let ref = FIRStorage.storage().reference(forURL: post.imageUrl)
-			ref.data(withMaxSize: 2 * 1024 * 1024)
-			{
-				(data, error) in
-				
-				if let error = error
-				{
-					print("STORAGE: Unable to read image from storage \(error)")
-				}
-				else if let data = data
-				{
-					print("STORAGE: Image read from storage")
-					if let image = UIImage(data: data)
-					{
-						self.messageImageView.image = image
-						Storage.imageCache.setObject(image, forKey: post.imageUrl as NSString)
-						
-						tableView.beginUpdates()
-						tableView.endUpdates()
-					}
-				}
-			}
+			postPic in
+			
+			self.messageImageView.image = postPic
+			// Row height changes so table needs to be reset
+			tableView.beginUpdates()
+			tableView.endUpdates()
 		}
 	}
 	

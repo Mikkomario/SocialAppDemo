@@ -90,7 +90,7 @@ class RegisterVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
 					user.push(overwrite: true)
 					User.currentUser = user
 					User.startTrackingCurrentUser()
-					self.performSegue(withIdentifier: "ToFeed", sender: nil)
+					self.dismiss(animated: true, completion: nil)
 				}
 			}
 		}
